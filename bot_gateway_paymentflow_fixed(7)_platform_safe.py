@@ -26,9 +26,7 @@ from telegram.ext import (
 
 # ============================================================
 # CONFIG
-# ============================================================
-
-BOT_TOKEN = os.getenv("BOT_TOKEN", "8106689891:AAFEMpemYQ9lSkgywaQbAcDbFLgVpKMWqws")
+# ==========================================mbFLgVpKMWqws")
 
 # YOUR TELEGRAM USER ID
 ADMIN_IDS = { 8926100324
@@ -38,7 +36,7 @@ ADMIN_IDS = { 8926100324
 DB_FILE = "reward_bot.db"
 
 logging.basicConfig(
-    format="%(asctime)s - %(levelname)s - %(message)s",
+    format="%(asctime)s - %(levelname)s - %(meage)s",
     level=logging.INFO
 )
 
@@ -53,76 +51,7 @@ db.row_factory = sqlite3.Row
 
 # ============================================================
 # DATABASE
-# ============================================================
-
-def init_db():
-
-    db.executescript("""
-
-    CREATE TABLE IF NOT EXISTS users (
-        user_id INTEGER PRIMARY KEY,
-        username TEXT DEFAULT '',
-        name TEXT DEFAULT '',
-        balance REAL DEFAULT 0,
-        upi TEXT DEFAULT '',
-        created_at TEXT DEFAULT CURRENT_TIMESTAMP
-    );
-
-    CREATE TABLE IF NOT EXISTS tasks (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL,
-        amount REAL NOT NULL,
-        link TEXT NOT NULL,
-        active INTEGER DEFAULT 1,
-        created_at TEXT DEFAULT CURRENT_TIMESTAMP
-    );
-
-    CREATE TABLE IF NOT EXISTS task_claims (
-        task_id INTEGER NOT NULL,
-        user_id INTEGER NOT NULL,
-        created_at TEXT DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY(task_id,user_id)
-    );
-
-    CREATE TABLE IF NOT EXISTS task_requests (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        task_id INTEGER NOT NULL,
-        user_id INTEGER NOT NULL,
-        request_type TEXT NOT NULL,
-        submission TEXT DEFAULT '',
-        screenshot_file_id TEXT DEFAULT '',
-        status TEXT DEFAULT 'PENDING',
-        reward REAL DEFAULT 0,
-        created_at TEXT DEFAULT CURRENT_TIMESTAMP,
-        processed_at TEXT
-    );
-
-    CREATE TABLE IF NOT EXISTS gifts (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        code TEXT UNIQUE NOT NULL,
-        name TEXT NOT NULL,
-        amount REAL NOT NULL,
-        per_account INTEGER DEFAULT 1,
-        total_limit INTEGER DEFAULT 1,
-        active INTEGER DEFAULT 1,
-        created_at TEXT DEFAULT CURRENT_TIMESTAMP
-    );
-
-    CREATE TABLE IF NOT EXISTS gift_claims (
-        gift_id INTEGER NOT NULL,
-        user_id INTEGER NOT NULL,
-        created_at TEXT DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY(gift_id,user_id)
-    );
-
-    CREATE TABLE IF NOT EXISTS withdrawals (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        user_id INTEGER NOT NULL,
-        amount REAL NOT NULL,
-        method TEXT NOT NULL,
-        payment TEXT NOT NULL,
-        status TEXT DEFAULT 'PENDING',
-        created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+# =================================eated_at TEXT DEFAULT CURRENT_TIMESTAMP,
         processed_at TEXT
     );
 
@@ -134,8 +63,7 @@ def init_db():
         created_at TEXT DEFAULT CURRENT_TIMESTAMP
     );
 
-    CREATE TABLE IF NOT EXISTS settings (
-        key TEXT PRIMARY KEY,
+    CREATE TABLE IF NOT EXISTS settings         key TEXT PRIMARY KEY,
         value TEXT
     );
 
